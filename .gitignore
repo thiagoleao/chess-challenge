@@ -2,3 +2,5 @@ META-INF
 /*.classpath
 /.settings
 /*.project
+/target/classes/com/thiagoleao/chesschallenge/*.class
+*.class
