@@ -1,5 +1,10 @@
 package com.thiagoleao.chesschallenge.pieces;
 
+/**
+ * This class represents the {@link Piece} {@link Bishop} for the chess game
+ * @author Thiago Leao
+ *
+ */
 public class Bishop extends AbstractPiece {
 	
 	private static final String OUTPUT_LETTER = "B";

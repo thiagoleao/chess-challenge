@@ -1,5 +1,10 @@
 package com.thiagoleao.chesschallenge.pieces;
 
+/**
+ * This class represents the {@link EmptySpace} for the chess board
+ * @author Thiago Leao
+ *
+ */
 public class EmptySpace extends AbstractPiece {
 
 	private static final String OUTPUT_LETTER = " ";

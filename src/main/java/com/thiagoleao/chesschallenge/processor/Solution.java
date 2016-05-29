@@ -6,6 +6,11 @@ import java.util.Map;
 
 import com.thiagoleao.chesschallenge.board.ChessBoardConfiguration;
 
+/**
+ * This class represents the solution for the challenge
+ * @author Thiago Leão
+ *
+ */
 public class Solution {
 	
 	private Integer attempts;
@@ -54,7 +59,7 @@ public class Solution {
 	}
 	
 	public void printElapsedTIme() {
-		output.println("Elapsed time: " + elapsedTime +"ms");
+		output.println("Elapsed time: " + (double) elapsedTime / 1000 +" seconds");
 	}
 
 	public void printChessBoards() {

@@ -11,8 +11,7 @@ import com.thiagoleao.chesschallenge.pieces.Piece;
 
 /**
  * 
- * Class responsible for the magic, to find the solution to the challenge
- * 
+ * Class responsible for the magic, to find the solution for the challenge
  * @author Thiago Leao
  *
  */
@@ -20,9 +19,9 @@ public class SolutionProcessor {
 
 	/**
 	 * Process a chess {@link Board} to find all unique configurations 
-	 * for the set of {@link Piece}
+	 * for the set of {@link Piece} inputed
 	 * @param board
-	 * @return a solution filled with the process results
+	 * @return a solution for the chess challenge
 	 */
 	public static Solution findSolution(Board board) {
 		long start = System.currentTimeMillis();
@@ -34,7 +33,7 @@ public class SolutionProcessor {
 		recursiveShifts(shifts, new ArrayList<Piece>(), board.getPieceList());
 		shifts.forEach(shift -> {  
 				ChessBoardConfiguration configuration = new ChessBoardConfiguration(board.getHeigth(), board.getWidth());
-				fillBoardConfigurationWithPieces(configuration, shift, solution, 0, 0);
+				findConfigurations(configuration, shift, solution, 0, 0);
 		});
 		
 		long stop = System.currentTimeMillis();
@@ -50,8 +49,7 @@ public class SolutionProcessor {
 	 * @param shift
 	 * @param solution
 	 */
-	//TODO needs refactor
-	private static boolean fillBoardConfigurationWithPieces(ChessBoardConfiguration configuration, List<Piece> pieces,
+	private static boolean findConfigurations(ChessBoardConfiguration configuration, List<Piece> pieces,
 			Solution solution, int index, int startPosition) {
 		if(index == pieces.size()) {
 			solution.addConfiguration(configuration);
@@ -66,7 +64,7 @@ public class SolutionProcessor {
 				if(piecePosition == ChessBoardConfiguration.NULL) {
 					break;
 				} else {
-					fillBoardConfigurationWithPieces(configuration.clone(), pieces, solution, index + 1, piecePosition +1);
+					findConfigurations(configuration.clone(), pieces, solution, index + 1, piecePosition +1);
 					configuration.removePiece(piece);
 					position = piecePosition + 1;
 				}
@@ -75,16 +73,16 @@ public class SolutionProcessor {
 		}
 	}
 	/**
-	 * Algorithm responsible to execute shifts between pieces to find configurations
+	 * Algorithm responsible to execute shifts between pieces in a chess board
 	 * @param shifts
 	 * @param gathering
 	 * @param partition
 	 */
-	private static void recursiveShifts(Set<List<Piece>> shifts, List<Piece> gathering, List<Piece> partition) {
+	private static void recursiveShifts(Set<List<Piece>> shifts, 
+										List<Piece> gathering, 
+										List<Piece> partition) {
 		int x = partition.size();
-		
-		
-		 //Overwritten equals method of Piece to keep no repetead elements in the set 
+		//Overwritten equals method of Piece to keep no repeated elements in the set 
 		if(x == 0) {
 			shifts.add(gathering);
 		} else {

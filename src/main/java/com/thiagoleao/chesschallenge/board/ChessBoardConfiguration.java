@@ -129,8 +129,6 @@ public class ChessBoardConfiguration implements Cloneable {
 
 	public String boardConfigurationToString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("\n");
-		
 		return printBoardHeaderAndFooter(builder)
 				.printBoardBody(builder)
 				.printBoardHeaderAndFooter(builder)

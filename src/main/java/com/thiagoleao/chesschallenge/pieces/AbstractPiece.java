@@ -1,5 +1,10 @@
 package com.thiagoleao.chesschallenge.pieces;
 
+/**
+ * This class contains all functionalities of a chess {@link Piece}  
+ * @author Thiago Leao
+ *
+ */
 public abstract class AbstractPiece implements Piece {
 
 	private Integer row = -1;

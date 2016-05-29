@@ -1,5 +1,6 @@
 package com.thiagoleao.chesschallenge;
 
+import java.io.PrintStream;
 import java.util.Arrays;
 
 import com.thiagoleao.chesschallenge.board.Board;
@@ -14,6 +15,14 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		PrintStream out = System.out;
+		
+		out.println("==========================================================================");
+		out.println("*                          CHESS CHALLENGE                               *");
+		out.println("==========================================================================");
+		out.println("							Author: Thiago Leao");
+		out.println("							2016");
+		
 		//Board board = new Board(3,3);
 		//Board board = new Board(4,4);
 		Board board = new Board(7,7);
@@ -27,6 +36,6 @@ public class Main {
 		solution.printElapsedTIme();
 		solution.printChessBoards();
 	
-		
+		out.println("==========================================================================");
 	}
 }

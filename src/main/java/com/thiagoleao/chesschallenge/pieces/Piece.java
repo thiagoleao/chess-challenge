@@ -1,5 +1,11 @@
 package com.thiagoleao.chesschallenge.pieces;
 
+/**
+ * This interface represents a chess {@link Piece} and it declare all
+ * shared methods
+ * @author Thiago Leao
+ *
+ */
 public interface Piece {
 
 	Integer getRow();

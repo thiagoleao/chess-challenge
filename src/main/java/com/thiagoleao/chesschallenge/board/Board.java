@@ -10,6 +10,12 @@ import com.thiagoleao.chesschallenge.pieces.Piece;
 import com.thiagoleao.chesschallenge.pieces.Queen;
 import com.thiagoleao.chesschallenge.pieces.Rook;
 
+/**
+ * This class represents the chess board that will be processed 
+ * to find all unique configurations
+ * @author Thiago Leao
+ *
+ */
 public class Board {
 	
 	private Integer heigth;
