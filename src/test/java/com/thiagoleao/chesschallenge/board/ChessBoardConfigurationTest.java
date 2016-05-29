@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.thiagoleao.chesschallenge.pieces.King;
+import com.thiagoleao.chesschallenge.pieces.Piece;
+
 public class ChessBoardConfigurationTest {
 
 	private ChessBoardConfiguration configuration;
@@ -21,5 +24,24 @@ public class ChessBoardConfigurationTest {
 		assertEquals(new Integer(0), configuration.getAttempt());
 		assertEquals(new Integer(0), configuration.getId());
 	}
+	
+	@Test
+	public void testAlocateAPieceInAnAvaliablePosition_sucess() {
+		Piece piece = new King(); 
+		int positionAlocated = configuration.alocateAPieceInAnAvaliablePosition(piece);
+		assertEquals(0, positionAlocated);
+	}
+	
+	@Test
+	public void testRemovePieceFromAPosition_sucess() {
+		Piece piece = new King();
+		configuration.alocateAPieceInAnAvaliablePosition(piece);
+		configuration.removePiece(piece);
+	}
 
+	@Test(expected = NoPieceWasFoundException.class)
+	public void testRemovePieceFromAPosition_error() {
+		Piece piece = new King();
+		configuration.removePiece(piece);
+	}
 }

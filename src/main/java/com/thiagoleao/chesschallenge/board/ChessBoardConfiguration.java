@@ -118,13 +118,56 @@ public class ChessBoardConfiguration implements Cloneable {
 	public void removePiece(Piece piece) {
 		int position = piece.getColumn() + width * piece.getRow();
 		if(piecesPosition.remove((Integer) position) == null) {
-			throw new IllegalArgumentException("No piece was found!");
+			throw new NoPieceWasFoundException();
 		}		
 	}
 
 	@Override
 	public ChessBoardConfiguration clone() {
 		return new ChessBoardConfiguration(width , length, attempt ,piecesPosition);
+	}
+
+	public String boardConfigurationToString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("\n");
+		
+		return printBoardHeaderAndFooter(builder)
+				.printBoardBody(builder)
+				.printBoardHeaderAndFooter(builder)
+				.getText(builder);
+	}
+
+	private String getText(StringBuilder builder) {
+		builder.append("*");
+		return builder.toString();
+	}
+
+	private ChessBoardConfiguration printBoardBody(StringBuilder builder) {
+		int height = length / width;
+		int position = 0;
+		for(int row = 0; row < height ; row++) {
+			if(row != 0) {
+				printBoardHeaderAndFooter(builder);
+			}
+			builder.append("*\n");
+			for(int column = 0; column < width; column++) {
+				builder.append("|");
+				Piece piece = piecesPosition.get(Integer.valueOf(position++));
+				if(piece == null) {
+					piece = EMPTY_SPACE;
+				}
+				builder.append(piece.getOutputLetter());
+			}
+			builder.append("|\n");
+		}
+		return this;
+	}
+	private ChessBoardConfiguration printBoardHeaderAndFooter(StringBuilder builder) {
+		for(int column = 0; column < width; column++) {
+			builder.append("*");
+			builder.append("-");
+		}
+		return this;
 	}
 
 }

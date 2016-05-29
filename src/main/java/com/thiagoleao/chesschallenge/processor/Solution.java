@@ -1,5 +1,6 @@
 package com.thiagoleao.chesschallenge.processor;
 
+import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ public class Solution {
 	
 	private Integer attempts;
 	private Integer nonUniqueConfigurations;
+	private PrintStream output;
 	
 
 	private Map<Integer, ChessBoardConfiguration> uniqueConfigurations;
@@ -46,5 +48,21 @@ public class Solution {
 		this.uniqueConfigurations = new HashMap<>();
 		this.nonUniqueConfigurations = new Integer(0);
 		this.attempts = new Integer(0);
+		this.output = System.out;
 	}
+
+	public void printTotalUniqueConfigurations() {
+		output.println("Total unique configurations: "+uniqueConfigurations.size());
+	}
+
+	public void printChessBoards() {
+		uniqueConfigurations.values()
+		.forEach(config -> {output.println(config.boardConfigurationToString());});
+		
+		
+		
+		
+	}
+	
+	
 }

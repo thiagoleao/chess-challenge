@@ -39,7 +39,7 @@ public class SolutionProcessorTest {
 		Solution solution = SolutionProcessor.findSolution(getBoard(7, 7, 
 				Arrays.asList(new King(), new King(), new Queen(), new Queen(), 
 						new Bishop(), new Bishop(), new Knight())));
-		assertEquals(0, solution.getUniqueConfigurations().size());
+		assertEquals(3059868, solution.getUniqueConfigurations().size());
 	}
 
 
