@@ -29,42 +29,43 @@ public class SolutionProcessor {
 		
 		Set<List<Piece>> shifts = new HashSet<List<Piece>>();
 		
-		recursiveShifts(shifts, new ArrayList<Piece>(), board.getPieces());
-		
-		shifts.forEach(shift -> { 
+		recursiveShifts(shifts, new ArrayList<Piece>(), board.getPieceList());
+		shifts.forEach(shift -> {  
 				ChessBoardConfiguration configuration = new ChessBoardConfiguration(board.getHeigth(), board.getWidth());
-				fillBoardConfigurationWithPieces(configuration, shift, solution, 0, 0);	
-				});
-		
+				fillBoardConfigurationWithPieces(configuration, shift, solution, 0, 0);
+		});
 		
 		return solution;
 	}
 
 	/**
-	 * Fill a {@link ChessBoardConfiguration} with pieces on all possible positions
+	 * Fill {@link ChessBoardConfiguration} object with pieces on all possible positions
 	 * @param configuration
 	 * @param shift
 	 * @param solution
 	 */
 	//TODO needs refactor
-	private static void fillBoardConfigurationWithPieces(ChessBoardConfiguration configuration, List<Piece> pieces,
-			Solution solution, int index, int offset) {
+	private static boolean fillBoardConfigurationWithPieces(ChessBoardConfiguration configuration, List<Piece> pieces,
+			Solution solution, int index, int startPosition) {
 		if(index == pieces.size()) {
 			solution.addConfiguration(configuration);
-			return;
-		}
+			return true;
+		} else {
 		
-		Piece piece = pieces.get(index);
-		int _offset = offset;
-		
-		while(_offset < configuration.getLength()) {
-			int piecePosition = configuration.alocateAPieceInAnAvaliablePosition(piece, _offset);
-			if(piecePosition == ChessBoardConfiguration.NULL) {
-				break;
-			} else {
-				fillBoardConfigurationWithPieces(configuration.clone(), pieces, solution, index + 1, piecePosition +1);
-				configuration.removePiece(piece);
+			Piece piece = pieces.get(index);
+			int position = startPosition;
+			
+			while(position < configuration.getLength()) {
+				int piecePosition = configuration.alocateAPieceInAnAvaliablePosition(piece, position);
+				if(piecePosition == ChessBoardConfiguration.NULL) {
+					break;
+				} else {
+					fillBoardConfigurationWithPieces(configuration.clone(), pieces, solution, index + 1, piecePosition +1);
+					configuration.removePiece(piece);
+					position = piecePosition + 1;
+				}
 			}
+			return false;
 		}
 	}
 	/**
@@ -76,8 +77,10 @@ public class SolutionProcessor {
 	private static void recursiveShifts(Set<List<Piece>> shifts, List<Piece> gathering, List<Piece> partition) {
 		int x = partition.size();
 		
+		
+		 //Overwritten equals method of Piece to keep no repetead elements in the set 
 		if(x == 0) {
-			shifts.add(partition);
+			shifts.add(gathering);
 		} else {
 			for(int i = 0; i < x; i++) {
 				List<Piece> _gathering = new ArrayList<Piece>(gathering);

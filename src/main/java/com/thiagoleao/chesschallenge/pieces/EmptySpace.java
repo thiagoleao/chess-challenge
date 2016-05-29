@@ -1,7 +1,8 @@
 package com.thiagoleao.chesschallenge.pieces;
 
-public class Queen extends AbstractPiece {
-	private static final String OUTPUT_LETTER = "Q";
+public class EmptySpace extends AbstractPiece {
+
+	private static final String OUTPUT_LETTER = " ";
 
 	public boolean isAttackPosition(int column, int row) {
 		return false;
