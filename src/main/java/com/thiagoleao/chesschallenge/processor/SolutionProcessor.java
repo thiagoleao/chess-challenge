@@ -25,6 +25,8 @@ public class SolutionProcessor {
 	 * @return a solution filled with the process results
 	 */
 	public static Solution findSolution(Board board) {
+		long start = System.currentTimeMillis();
+		
 		Solution solution = new Solution();
 		
 		Set<List<Piece>> shifts = new HashSet<List<Piece>>();
@@ -34,6 +36,10 @@ public class SolutionProcessor {
 				ChessBoardConfiguration configuration = new ChessBoardConfiguration(board.getHeigth(), board.getWidth());
 				fillBoardConfigurationWithPieces(configuration, shift, solution, 0, 0);
 		});
+		
+		long stop = System.currentTimeMillis();
+		
+		solution.setElapsedTime(stop - start);
 		
 		return solution;
 	}

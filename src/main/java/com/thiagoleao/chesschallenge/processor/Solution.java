@@ -11,6 +11,7 @@ public class Solution {
 	private Integer attempts;
 	private Integer nonUniqueConfigurations;
 	private PrintStream output;
+	private long elapsedTime;
 	
 
 	private Map<Integer, ChessBoardConfiguration> uniqueConfigurations;
@@ -31,6 +32,10 @@ public class Solution {
 		return nonUniqueConfigurations;
 	}
 	
+	public void setElapsedTime(long elapsedTime) {
+		this.elapsedTime = elapsedTime;
+	}
+	
 	public void addConfiguration(ChessBoardConfiguration configuration) {
 		attempts++;
 		configuration.setAttempt(attempts);
@@ -44,25 +49,23 @@ public class Solution {
 		}
 	}
 	
+	public void printTotalUniqueConfigurations() {
+		output.println("Total unique configurations: "+uniqueConfigurations.size());
+	}
+	
+	public void printElapsedTIme() {
+		output.println("Elapsed time: " + elapsedTime +"ms");
+	}
+
+	public void printChessBoards() {
+		uniqueConfigurations.values()
+		.forEach(config -> {output.println(config.boardConfigurationToString());});
+	}
+
 	private void init() {
 		this.uniqueConfigurations = new HashMap<>();
 		this.nonUniqueConfigurations = new Integer(0);
 		this.attempts = new Integer(0);
 		this.output = System.out;
 	}
-
-	public void printTotalUniqueConfigurations() {
-		output.println("Total unique configurations: "+uniqueConfigurations.size());
-	}
-
-	public void printChessBoards() {
-		uniqueConfigurations.values()
-		.forEach(config -> {output.println(config.boardConfigurationToString());});
-		
-		
-		
-		
-	}
-	
-	
 }
